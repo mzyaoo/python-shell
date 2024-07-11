@@ -10,9 +10,9 @@ target_directory = '/Users/imzyao/Downloads/20240710确认510可印制二维码'
 
 # 根据文件扩展名选择引擎
 if file_path.endswith('.xls'):
-    df = pd.read_excel(file_path, sheet_name=sheet_name, engine='xlrd')
+    df = pd.read_excel(file_path, sheet_name=sheet_name, engine='xlrd', dtype=str)
 elif file_path.endswith('.xlsx'):
-    df = pd.read_excel(file_path, sheet_name=sheet_name, engine='openpyxl')
+    df = pd.read_excel(file_path, sheet_name=sheet_name, engine='openpyxl', dtype=str)
 else:
     raise ValueError("Unsupported file format. Please use .xls or .xlsx files.")
 

@@ -23,18 +23,20 @@ except ImportError:
 
 
 # 要读取的Excel文件路径
-read_excel_file = '/Users/imzyao/Downloads/20240705提供352可印刷.xls'
+read_excel_file = '/Users/imzyao/Downloads/20240710确认510可印制二维码.xls'
 # sheet名称
-sheet_name = '无需核实-可印刷（352）'
+sheet_name = '无需核实-可印刷（510）'
 # 定义生成目录
 base_directory = '/Users/imzyao/Downloads/20240705提供352可印刷'  # 修改此路径为您的目标目录
 
-# 读取Excel文件
-try:
-    df = pd.read_excel(read_excel_file, sheet_name=sheet_name)
-except Exception as e:
-    print(f"读取Excel文件时出错: {e}")
-    exit()
+# 根据文件扩展名选择引擎
+if read_excel_file.endswith('.xls'):
+    df = pd.read_excel(read_excel_file, sheet_name=sheet_name, engine='xlrd', dtype=str)
+elif read_excel_file.endswith('.xlsx'):
+    df = pd.read_excel(read_excel_file, sheet_name=sheet_name, engine='openpyxl', dtype=str)
+else:
+    raise ValueError("Unsupported file format. Please use .xls or .xlsx files.")
+
 
 # 检查数据框的列名
 print(f"数据框的列名: {df.columns.tolist()}")
