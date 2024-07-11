@@ -21,9 +21,17 @@ except ImportError:
     print("正在安装openpyxl库...")
     os.system("pip install openpyxl")
 
+
+# 要读取的Excel文件路径
+read_excel_file = '/Users/imzyao/Downloads/20240705提供352可印刷.xls'
+# sheet名称
+sheet_name = '无需核实-可印刷（352）'
+# 定义生成目录
+base_directory = '/Users/imzyao/Downloads/20240705提供352可印刷'  # 修改此路径为您的目标目录
+
 # 读取Excel文件
 try:
-    df = pd.read_excel('/Users/imzyao/Downloads/第二批制二维码0617(4).xls', sheet_name='Sheet1')
+    df = pd.read_excel(read_excel_file, sheet_name=sheet_name)
 except Exception as e:
     print(f"读取Excel文件时出错: {e}")
     exit()
@@ -43,8 +51,6 @@ unique_combinations = df[['区', '街道']].drop_duplicates()
 def sanitize_filename(filename):
     return re.sub(r'[\\/*?:"<>|]', "_", filename)
 
-# 定义基目录
-base_directory = '/Users/imzyao/Downloads/第二批二维码'  # 修改此路径为您的目标目录
 
 # 创建基目录（如果不存在）
 if not os.path.exists(base_directory):
