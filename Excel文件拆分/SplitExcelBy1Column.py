@@ -2,11 +2,11 @@ import pandas as pd
 import os
 
 # 读取 Excel 文件并指定工作表
-file_path = '/Users/imzyao/Downloads/20240710确认510可印制二维码.xls'  # 或者 'your_excel_file.xls'
+file_path = '/Users/imzyao/Downloads/20240501-0918机动轮椅车登记情况（20240924核对）-51后1553人.xls'  # 或者 'your_excel_file.xls'
 # 替换为你要拆分的工作表名称
-sheet_name = '无需核实-可印刷（510）'
+sheet_name = '未粘贴1553'
 # 指定生成的文件夹目录
-target_directory = '/Users/imzyao/Downloads/20240710确认510可印制二维码'
+target_directory = '/Users/imzyao/Downloads/20240501-0918机动轮椅车登记情况（20240924核对）-51后1553人'
 
 # 根据文件扩展名选择引擎
 if file_path.endswith('.xls'):
@@ -17,12 +17,12 @@ else:
     raise ValueError("Unsupported file format. Please use .xls or .xlsx files.")
 
 # 获取唯一的区名称
-districts = df['区'].unique()
+districts = df['区划'].unique()
 
 # 创建对应的区文件夹并保存拆分的 Excel 文件
 for district in districts:
     # 筛选出当前区的数据
-    df_district = df[df['区'] == district]
+    df_district = df[df['区划'] == district]
 
     # 创建区的文件夹路径
     district_folder_path = os.path.join(target_directory, district)
